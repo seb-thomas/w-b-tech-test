@@ -3,17 +3,23 @@ import PropTypes from "prop-types"
 
 const Card = ({ id, name, type, diet, isExtinct }) => {
   const handleOnClick = () => {
-    console.log("hey")
-    // fetch({
-    //   url: "http://localhost:3022/",
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ query: "query allPosts { allPosts { id } }" }),
-    // })
-    //   .then(res => res.json())
-    //   .then(data => console.log({ data }))
+    fetch("http://localhost:3022/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: `
+        mutation removeAnimal($id: ID!) {
+          removeAnimal(id: $id)
+        }
+        `,
+        variables: { id },
+      }),
+    })
+      .then(res => res.json())
+      .then(res => console.log(res.data))
   }
-
   return (
     <dl key={id}>
       <dt>{name}</dt>
@@ -32,5 +38,16 @@ Card.propTypes = {
   diet: PropTypes.string.isRequired,
   isExtinct: PropTypes.bool.isRequired,
 }
+// mutation removeAnimal($id: ID!) {
+//   removePost(id: $id)
+// }
+// mutation addPost($id: ID!, $title: String!, $views: Int!, $user_id: ID!) {
+//   createPost(id: $id, title: $title, views: $views, user_id: $user_id) {
+//       id,
+//       title,
+//       views,
+//       user_id
+//   }
+// }
 
 export default Card
