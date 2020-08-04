@@ -7,8 +7,9 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "db" : "json-graphql-server server/db.js --p 3022",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
+    "start": "npm run db & npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
