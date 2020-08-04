@@ -18,6 +18,13 @@ module.exports = {
       diet: "carnivore",
       isExtinct: false,
     },
+    {
+      id: 3,
+      name: "Badger",
+      type: "mammal",
+      diet: "omnivore",
+      isExtinct: false,
+    },
   ],
   users: [
     { id: 123, name: "John Doe" },

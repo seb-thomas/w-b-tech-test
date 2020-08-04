@@ -7,13 +7,10 @@ export default function Home({ data }) {
   const { jsonGraphQlServer } = data
   return (
     <Layout>
-      <h1>Hi! {data.site.siteMetadata.title}</h1>
+      <h1>{data.site.siteMetadata.title}</h1>
       {jsonGraphQlServer.allAnimals.map(animal => {
         return <Card key={animal.id} {...animal} />
       })}
-      {/* {data.swapi.allFilms.edges.map(({ node }) => {
-        return <Card key={node.title} {...node} />
-      })} */}
     </Layout>
   )
 }
@@ -32,23 +29,6 @@ export const query = graphql`
     site {
       siteMetadata {
         title
-      }
-    }
-    swapi {
-      allFilms {
-        edges {
-          node {
-            title
-            director
-          }
-        }
-      }
-      allSpecies {
-        edges {
-          node {
-            name
-          }
-        }
       }
     }
   }

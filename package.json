@@ -16,9 +16,7 @@
   "dependencies": {
     "gatsby": "^2.23.12",
     "gatsby-plugin-typography": "^2.5.10",
-    "gatsby-source-filesystem": "^2.3.23",
     "gatsby-source-graphql": "^2.6.2",
-    "gatsby-source-rest-api": "^0.2.3",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
