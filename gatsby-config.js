@@ -20,6 +20,12 @@ module.exports = {
         url: "http://localhost:3022/",
       },
     },
+    // {
+    //   resolve: "gatsby-plugin-apollo",
+    //   options: {
+    //     uri: "http://localhost:3022/",
+    //   },
+    // },
     {
       resolve: "gatsby-plugin-typography",
       options: {
