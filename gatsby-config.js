@@ -6,14 +6,14 @@
 
 module.exports = {
   siteMetadata: {
-    title: `Title from siteMetadata`,
-    eltit: `hellew`,
+    title: "Title from siteMetadata",
+    eltit: "hellew",
   },
   plugins: [
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: `src`,
+        name: "src",
         path: `${__dirname}/src/`,
       },
     },
@@ -35,9 +35,20 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: "gatsby-source-graphql",
       options: {
-        pathToConfigModule: `src/utils/typography`,
+        // Arbitrary name for the remote schema Query type
+        typeName: "ANIMALS",
+        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+        fieldName: "animals",
+        // Url to query from
+        url: "http://localhost:3022/",
+      },
+    },
+    {
+      resolve: "gatsby-plugin-typography",
+      options: {
+        pathToConfigModule: "src/utils/typography",
       },
     },
   ],

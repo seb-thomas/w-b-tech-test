@@ -1,25 +1,18 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
+import Card from "../components/card"
 
 export default function Home({ data }) {
   return (
     <Layout>
       <h1>Hi! {data.site.siteMetadata.title}</h1>
-      {data.swapi.allFilms.edges.map(({ node }) => {
-        const { id, title, director } = node
-
-        return (
-          <dd key={id}>
-            <dt>{title}</dt>
-            <dl>{director}</dl>
-          </dd>
-        )
+      {data.animals.allPosts.map(({ id, title }) => {
+        return <Card key={id} title={title} />
       })}
-      <p>
-        What do I like to do? Lots of course but definitely enjoy building
-        websites.
-      </p>
+      {data.swapi.allFilms.edges.map(({ node }) => {
+        return <Card key={node.title} {...node} />
+      })}
     </Layout>
   )
 }
@@ -46,6 +39,12 @@ export const query = graphql`
             name
           }
         }
+      }
+    }
+    animals {
+      allPosts {
+        id
+        title
       }
     }
   }
