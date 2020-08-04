@@ -3,6 +3,22 @@ module.exports = {
     { id: 1, title: "Lorem Ipsum", views: 254, user_id: 123 },
     { id: 2, title: "Sic Dolor amet", views: 65, user_id: 456 },
   ],
+  animals: [
+    {
+      id: 1,
+      name: "Tiger",
+      type: "mammal",
+      diet: "carnivore",
+      isExtinct: false,
+    },
+    {
+      id: 2,
+      name: "Lion",
+      type: "mammal",
+      diet: "carnivore",
+      isExtinct: false,
+    },
+  ],
   users: [
     { id: 123, name: "John Doe" },
     { id: 456, name: "Jane Doe" },

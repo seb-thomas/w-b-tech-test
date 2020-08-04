@@ -6,7 +6,7 @@ const Card = ({ id, name, type, diet, isExtinct }) => (
     <dt>{name}</dt>
     <dd>{type}</dd>
     <dd>{diet}</dd>
-    <dd>{isExtinct}</dd>
+    <dd>Is extinct: {isExtinct ? "Yes" : "No"}</dd>
     <button>Delete</button>
   </dl>
 )

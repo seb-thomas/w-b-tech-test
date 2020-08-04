@@ -4,21 +4,31 @@ import Layout from "../components/layout"
 import Card from "../components/card"
 
 export default function Home({ data }) {
+  const { jsonGraphQlServer } = data
   return (
     <Layout>
       <h1>Hi! {data.site.siteMetadata.title}</h1>
-      {data.animals.allPosts.map(({ id, title }) => {
-        return <Card key={id} title={title} />
+      {jsonGraphQlServer.allAnimals.map(animal => {
+        return <Card key={animal.id} {...animal} />
       })}
-      {data.swapi.allFilms.edges.map(({ node }) => {
+      {/* {data.swapi.allFilms.edges.map(({ node }) => {
         return <Card key={node.title} {...node} />
-      })}
+      })} */}
     </Layout>
   )
 }
 
 export const query = graphql`
   query {
+    jsonGraphQlServer {
+      allAnimals {
+        id
+        name
+        type
+        diet
+        isExtinct
+      }
+    }
     site {
       siteMetadata {
         title
@@ -39,12 +49,6 @@ export const query = graphql`
             name
           }
         }
-      }
-    }
-    animals {
-      allPosts {
-        id
-        title
       }
     }
   }
