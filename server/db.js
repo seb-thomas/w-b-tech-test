@@ -25,6 +25,20 @@ module.exports = {
       diet: "omnivore",
       isExtinct: false,
     },
+    {
+      id: 4,
+      name: "Snake",
+      type: "reptile",
+      diet: "omnivore",
+      isExtinct: false,
+    },
+    {
+      id: 5,
+      name: "Cow",
+      type: "mammal",
+      diet: "herbivore",
+      isExtinct: false,
+    },
   ],
   users: [
     { id: 123, name: "John Doe" },
