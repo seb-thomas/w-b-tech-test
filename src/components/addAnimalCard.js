@@ -26,7 +26,7 @@ const ADD_ANIMAL = gql`
   }
 `
 
-const AddAnimalCard = ({}) => {
+const AddAnimalCard = () => {
   // Connect the useMutation hook with query
   const [addAnimal, { data }] = useMutation(ADD_ANIMAL)
   // Set up initial state so we can use it to clear state later

@@ -8,20 +8,35 @@ const DELETE_ANIMAL = gql`
   }
 `
 
+const UPDATE_ANIMAL = gql`
+  mutation updateAnimal($id: ID!, $name: String!) {
+    updateAnimal(id: $id, name: $name) {
+      id
+      name
+    }
+  }
+`
+
 const Card = ({ id, name, type, diet, isExtinct }) => {
   const [removeAnimal, { data }] = useMutation(DELETE_ANIMAL)
+  const [updateAnimal] = useMutation(UPDATE_ANIMAL)
 
-  const handleOnClick = () => {
+  const handleOnDeleteClick = () => {
     removeAnimal({ variables: { id } })
   }
 
+  const handleOnEditClick = () => {
+    updateAnimal({ variables: { id, name: "donkey" } })
+  }
+
   return (
-    <dl>
+    <dl style={{ border: "3px solid", margin: "1rem" }}>
       <dt>{name}</dt>
       <dd>{type}</dd>
       <dd>{diet}</dd>
       <dd>Is extinct: {isExtinct ? "Yes" : "No"}</dd>
-      <button onClick={handleOnClick}>Delete</button>
+      <button onClick={handleOnDeleteClick}>Delete</button>
+      <button onClick={handleOnEditClick}>Edit</button>
     </dl>
   )
 }
@@ -33,16 +48,5 @@ Card.propTypes = {
   diet: PropTypes.string.isRequired,
   isExtinct: PropTypes.bool.isRequired,
 }
-// mutation removeAnimal($id: ID!) {
-//   removePost(id: $id)
-// }
-// mutation addPost($id: ID!, $title: String!, $views: Int!, $user_id: ID!) {
-//   createPost(id: $id, title: $title, views: $views, user_id: $user_id) {
-//       id,
-//       title,
-//       views,
-//       user_id
-//   }
-// }
 
 export default Card
