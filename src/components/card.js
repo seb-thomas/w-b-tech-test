@@ -9,18 +9,8 @@ const DELETE_ANIMAL = gql`
   }
 `
 
-const UPDATE_ANIMAL = gql`
-  mutation updateAnimal($id: ID!, $name: String!) {
-    updateAnimal(id: $id, name: $name) {
-      id
-      name
-    }
-  }
-`
-
 const Card = ({ id, name, type, diet, isExtinct }) => {
   const [removeAnimal, { data }] = useMutation(DELETE_ANIMAL)
-  const [updateAnimal] = useMutation(UPDATE_ANIMAL)
   const [isEditing, setIsEditing] = useState(false)
 
   const handleOnDeleteClick = () => {
@@ -29,7 +19,6 @@ const Card = ({ id, name, type, diet, isExtinct }) => {
 
   const handleOnEditClick = () => {
     setIsEditing(true)
-    // updateAnimal({ variables: { id, name: "donkey" } })
   }
 
   const staticCard = (
@@ -50,6 +39,7 @@ const Card = ({ id, name, type, diet, isExtinct }) => {
       type={type}
       diet={diet}
       isExtinct={isExtinct}
+      isEditing
     />
   )
 

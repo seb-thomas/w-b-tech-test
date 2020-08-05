@@ -26,9 +26,34 @@ const ADD_ANIMAL = gql`
   }
 `
 
-const AddAnimalCard = ({ id, type, name, diet, isExtinct }) => {
-  // Connect the useMutation hook with query
+const UPDATE_ANIMAL = gql`
+  mutation updateAnimal(
+    $id: ID!
+    $name: String!
+    $type: String!
+    $diet: String!
+    $isExtinct: Boolean!
+  ) {
+    updateAnimal(
+      id: $id
+      name: $name
+      type: $type
+      diet: $diet
+      isExtinct: $isExtinct
+    ) {
+      id
+      type
+      name
+      diet
+      isExtinct
+    }
+  }
+`
+
+const AddAnimalCard = ({ id, type, name, diet, isExtinct, isEditing }) => {
+  // Connect the useMutation hooks with queries
   const [addAnimal, { data }] = useMutation(ADD_ANIMAL)
+  const [updateAnimal] = useMutation(UPDATE_ANIMAL)
   // Set up initial state so we can use it to clear state later
   const initialState = {
     id: id ? id : uuidv4(),
@@ -42,17 +67,19 @@ const AddAnimalCard = ({ id, type, name, diet, isExtinct }) => {
     (state, newState) => ({ ...state, ...newState }),
     { ...initialState }
   )
+  console.log("formData ", formData)
 
   const handleSubmit = event => {
     event.preventDefault()
 
-    // Clear the form data
-    setFormData({ ...initialState })
-
     // Call the mutation
-    return addAnimal({
-      variables: { ...formData },
-    })
+    console.log("formData sub ", formData)
+    isEditing
+      ? updateAnimal({ variables: { ...formData } })
+      : addAnimal({ variables: { ...formData } })
+
+    // Clear the form data
+    return setFormData({ ...initialState })
   }
 
   const handleChange = event => {
@@ -109,7 +136,7 @@ const AddAnimalCard = ({ id, type, name, diet, isExtinct }) => {
         />
       </label>
 
-      <button type="submit">Add animal</button>
+      <button type="submit">{isEditing ? "Save" : "Add animal"}</button>
     </form>
   )
 }
