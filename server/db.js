@@ -22,14 +22,14 @@ module.exports = {
       id: 3,
       name: "Badger",
       type: "mammal",
-      diet: "omnivore",
+      diet: "carnivore",
       isExtinct: false,
     },
     {
       id: 4,
       name: "Snake",
       type: "reptile",
-      diet: "omnivore",
+      diet: "carnivore",
       isExtinct: false,
     },
     {

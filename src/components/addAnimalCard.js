@@ -26,16 +26,16 @@ const ADD_ANIMAL = gql`
   }
 `
 
-const AddAnimalCard = () => {
+const AddAnimalCard = ({ id, type, name, diet, isExtinct }) => {
   // Connect the useMutation hook with query
   const [addAnimal, { data }] = useMutation(ADD_ANIMAL)
   // Set up initial state so we can use it to clear state later
   const initialState = {
-    id: uuidv4(),
-    type: "",
-    name: "",
-    diet: "",
-    isExtinct: false,
+    id: id ? id : uuidv4(),
+    type: type ? type : "",
+    name: name ? name : "",
+    diet: diet ? diet : "",
+    isExtinct: isExtinct ? isExtinct : false,
   }
   // useReducer to keep state for all form fields in one place
   const [formData, setFormData] = useReducer(
@@ -81,10 +81,10 @@ const AddAnimalCard = () => {
           onChange={event => handleChange(event)}
         >
           <option defaultValue></option>
-          <option value="Mammal">Mammal</option>
-          <option value="Reptile">Reptile</option>
-          <option value="Fish">Fish</option>
-          <option value="Amphibious">Amphibious</option>
+          <option value="mammal">Mammal</option>
+          <option value="reptile">Reptile</option>
+          <option value="fish">Fish</option>
+          <option value="amphibious">Amphibious</option>
         </select>
       </label>
       <label>
@@ -95,8 +95,8 @@ const AddAnimalCard = () => {
           onChange={event => handleChange(event)}
         >
           <option defaultValue></option>
-          <option value="Herbivore">Herbivore</option>
-          <option value="Carnivore">Carnivore</option>
+          <option value="herbivore">Herbivore</option>
+          <option value="carnivore">Carnivore</option>
         </select>
       </label>
       <label>
