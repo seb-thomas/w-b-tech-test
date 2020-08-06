@@ -3,9 +3,6 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import AddAnimal from "../components/addAnimal"
 import AnimalList from "../components/animalList"
-// import { makeVar } from "@apollo/client"
-
-// const cartItems = makeVar([])
 
 export default function Home({ data }) {
   return (

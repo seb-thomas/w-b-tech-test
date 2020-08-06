@@ -50,7 +50,16 @@ const UPDATE_ANIMAL = gql`
   }
 `
 
-const AddAnimal = ({ id, type, name, diet, isExtinct, isEditing }) => {
+const AddAnimal = ({
+  id,
+  type,
+  name,
+  diet,
+  isExtinct,
+  isEditing,
+  setIsEditing,
+  amEditing,
+}) => {
   // Connect the useMutation hooks with queries
   const [addAnimal, { data }] = useMutation(ADD_ANIMAL)
   const [updateAnimal] = useMutation(UPDATE_ANIMAL)
@@ -72,11 +81,10 @@ const AddAnimal = ({ id, type, name, diet, isExtinct, isEditing }) => {
     event.preventDefault()
 
     // Call the mutation
-    console.log("formData sub ", formData)
     isEditing
       ? updateAnimal({ variables: { ...formData } })
       : addAnimal({ variables: { ...formData } })
-
+    setIsEditing(false)
     // Clear the form data
     return setFormData({ ...initialState })
   }
@@ -136,6 +144,15 @@ const AddAnimal = ({ id, type, name, diet, isExtinct, isEditing }) => {
       </label>
 
       <button type="submit">{isEditing ? "Save" : "Add animal"}</button>
+      <button
+        type="button"
+        onClick={() => {
+          amEditing(true)
+          console.log(amEditing())
+        }}
+      >
+        amEditing
+      </button>
     </form>
   )
 }

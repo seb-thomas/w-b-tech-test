@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import PropTypes from "prop-types"
 import { gql, useMutation } from "@apollo/client"
 import AddAnimal from "./addAnimal"
+import { makeVar } from "@apollo/client"
 
 const DELETE_ANIMAL = gql`
   mutation removeAnimal($id: ID!) {
@@ -12,13 +13,14 @@ const DELETE_ANIMAL = gql`
 const Animal = ({ id, name, type, diet, isExtinct }) => {
   const [removeAnimal, { data }] = useMutation(DELETE_ANIMAL)
   const [isEditing, setIsEditing] = useState(false)
+  const amEditing = makeVar(false)
 
   const handleOnDeleteClick = () => {
     removeAnimal({ variables: { id } })
   }
 
-  const handleOnEditClick = () => {
-    setIsEditing(true)
+  const handleOnEditClick = bool => {
+    setIsEditing(bool)
   }
 
   const staticCard = (
@@ -28,9 +30,11 @@ const Animal = ({ id, name, type, diet, isExtinct }) => {
       <dd>{diet}</dd>
       <dd>Is extinct: {isExtinct ? "Yes" : "No"}</dd>
       <button onClick={handleOnDeleteClick}>Delete</button>
-      <button onClick={handleOnEditClick}>Edit</button>
+      <button onClick={() => handleOnEditClick(true)}>Edit</button>
     </dl>
   )
+
+  console.log(amEditing())
 
   const editingCard = (
     <AddAnimal
@@ -40,12 +44,15 @@ const Animal = ({ id, name, type, diet, isExtinct }) => {
       diet={diet}
       isExtinct={isExtinct}
       isEditing
+      amEditing={amEditing}
+      setIsEditing={handleOnEditClick}
     />
   )
 
   return (
     <div style={{ border: "3px solid", margin: "1rem", padding: "1rem" }}>
       {isEditing ? editingCard : staticCard}
+      {amEditing() ? "am editing" : "am static"}
     </div>
   )
 }
