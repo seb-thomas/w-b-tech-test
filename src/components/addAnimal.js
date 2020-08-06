@@ -1,6 +1,7 @@
 import React, { useReducer } from "react"
 import { gql, useMutation } from "@apollo/client"
 import { v4 as uuidv4 } from "uuid"
+import PropTypes from "prop-types"
 import {
   Fieldset,
   Checkbox,
@@ -60,26 +61,26 @@ const UPDATE_ANIMAL = gql`
 `
 
 const AddAnimal = ({
-  id,
+  id = uuidv4(),
   type,
   name,
   diet,
   isExtinct,
   isEditing,
   setIsEditing,
-  amEditing,
 }) => {
   // Connect the useMutation hooks with queries
-  const [addAnimal] = useMutation(ADD_ANIMAL)
+  const [addAnimal, { data }] = useMutation(ADD_ANIMAL)
   const [updateAnimal] = useMutation(UPDATE_ANIMAL)
   // Set up initial state so we can use it to clear state later
   const initialState = {
-    id: id ? id : uuidv4(),
-    type: type ? type : "",
-    name: name ? name : "",
-    diet: diet ? diet : "",
-    isExtinct: isExtinct ? isExtinct : false,
+    id,
+    type,
+    name,
+    diet,
+    isExtinct,
   }
+
   // useReducer to keep state for all form fields in one place
   const [formData, setFormData] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
@@ -172,17 +173,25 @@ const AddAnimal = ({
       </Fieldset>
 
       <button type="submit">{isEditing ? "Save" : "Add animal"}</button>
-      <button
-        type="button"
-        onClick={() => {
-          amEditing(true)
-          console.log(amEditing())
-        }}
-      >
-        amEditing
-      </button>
     </form>
   )
+}
+
+AddAnimal.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  type: PropTypes.string,
+  diet: PropTypes.string,
+  isExtinct: PropTypes.bool,
+  setIsEditing: PropTypes.func,
+}
+
+AddAnimal.defaultProps = {
+  name: "",
+  type: "",
+  diet: "",
+  isExtinct: false,
+  setIsEditing: () => {},
 }
 
 export default AddAnimal

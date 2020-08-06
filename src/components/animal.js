@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import PropTypes from "prop-types"
 import { gql, useMutation } from "@apollo/client"
 import AddAnimal from "./addAnimal"
-import { makeVar } from "@apollo/client"
 import { Window, WindowContent } from "react95"
 
 const DELETE_ANIMAL = gql`
@@ -14,7 +13,6 @@ const DELETE_ANIMAL = gql`
 const Animal = ({ id, name, type, diet, isExtinct }) => {
   const [removeAnimal, { data }] = useMutation(DELETE_ANIMAL)
   const [isEditing, setIsEditing] = useState(false)
-  const amEditing = makeVar(false)
 
   const handleOnDeleteClick = () => {
     removeAnimal({ variables: { id } })
@@ -35,8 +33,6 @@ const Animal = ({ id, name, type, diet, isExtinct }) => {
     </dl>
   )
 
-  console.log(amEditing())
-
   const editingCard = (
     <AddAnimal
       id={id}
@@ -45,17 +41,13 @@ const Animal = ({ id, name, type, diet, isExtinct }) => {
       diet={diet}
       isExtinct={isExtinct}
       isEditing
-      amEditing={amEditing}
       setIsEditing={handleOnEditClick}
     />
   )
 
   return (
     <Window>
-      <WindowContent>
-        {isEditing ? editingCard : staticCard}
-        {amEditing() ? "am editing" : "am static"}
-      </WindowContent>
+      <WindowContent>{isEditing ? editingCard : staticCard}</WindowContent>
     </Window>
   )
 }
