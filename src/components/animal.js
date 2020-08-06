@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 import { gql, useMutation } from "@apollo/client"
-import AddAnimalCard from "./addAnimalCard"
+import AddAnimal from "./addAnimal"
 
 const DELETE_ANIMAL = gql`
   mutation removeAnimal($id: ID!) {
@@ -9,7 +9,7 @@ const DELETE_ANIMAL = gql`
   }
 `
 
-const Card = ({ id, name, type, diet, isExtinct }) => {
+const Animal = ({ id, name, type, diet, isExtinct }) => {
   const [removeAnimal, { data }] = useMutation(DELETE_ANIMAL)
   const [isEditing, setIsEditing] = useState(false)
 
@@ -33,7 +33,7 @@ const Card = ({ id, name, type, diet, isExtinct }) => {
   )
 
   const editingCard = (
-    <AddAnimalCard
+    <AddAnimal
       id={id}
       name={name}
       type={type}
@@ -50,7 +50,7 @@ const Card = ({ id, name, type, diet, isExtinct }) => {
   )
 }
 
-Card.propTypes = {
+Animal.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -58,4 +58,4 @@ Card.propTypes = {
   isExtinct: PropTypes.bool.isRequired,
 }
 
-export default Card
+export default Animal

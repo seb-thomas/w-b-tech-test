@@ -50,7 +50,7 @@ const UPDATE_ANIMAL = gql`
   }
 `
 
-const AddAnimalCard = ({ id, type, name, diet, isExtinct, isEditing }) => {
+const AddAnimal = ({ id, type, name, diet, isExtinct, isEditing }) => {
   // Connect the useMutation hooks with queries
   const [addAnimal, { data }] = useMutation(ADD_ANIMAL)
   const [updateAnimal] = useMutation(UPDATE_ANIMAL)
@@ -67,7 +67,6 @@ const AddAnimalCard = ({ id, type, name, diet, isExtinct, isEditing }) => {
     (state, newState) => ({ ...state, ...newState }),
     { ...initialState }
   )
-  console.log("formData ", formData)
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -141,4 +140,4 @@ const AddAnimalCard = ({ id, type, name, diet, isExtinct, isEditing }) => {
   )
 }
 
-export default AddAnimalCard
+export default AddAnimal
