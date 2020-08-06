@@ -10,15 +10,12 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-styled-components`,
+    },
+    {
       resolve: "gatsby-plugin-apollo",
       options: {
         uri: "http://localhost:3022/graphql",
-      },
-    },
-    {
-      resolve: "gatsby-plugin-typography",
-      options: {
-        pathToConfigModule: "src/utils/typography",
       },
     },
   ],

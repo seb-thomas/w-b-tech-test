@@ -8,6 +8,7 @@ export default function Home({ data }) {
   return (
     <Layout>
       <h1>{data.site.siteMetadata.title}</h1>
+
       <AnimalList />
       <AddAnimal />
     </Layout>
