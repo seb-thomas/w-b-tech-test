@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { gql, useMutation } from "@apollo/client"
 import AddAnimal from "./addAnimal"
 import { makeVar } from "@apollo/client"
+import { Window, WindowContent } from "react95"
 
 const DELETE_ANIMAL = gql`
   mutation removeAnimal($id: ID!) {
@@ -50,10 +51,12 @@ const Animal = ({ id, name, type, diet, isExtinct }) => {
   )
 
   return (
-    <div style={{ border: "3px solid", margin: "1rem", padding: "1rem" }}>
-      {isEditing ? editingCard : staticCard}
-      {amEditing() ? "am editing" : "am static"}
-    </div>
+    <Window>
+      <WindowContent>
+        {isEditing ? editingCard : staticCard}
+        {amEditing() ? "am editing" : "am static"}
+      </WindowContent>
+    </Window>
   )
 }
 

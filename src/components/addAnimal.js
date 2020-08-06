@@ -1,6 +1,15 @@
 import React, { useReducer } from "react"
 import { gql, useMutation } from "@apollo/client"
 import { v4 as uuidv4 } from "uuid"
+import {
+  Fieldset,
+  Checkbox,
+  TextField,
+  Select,
+  WindowHeader,
+  Toolbar,
+  Button,
+} from "react95"
 
 const ADD_ANIMAL = gql`
   mutation createAnimal(
@@ -61,7 +70,7 @@ const AddAnimal = ({
   amEditing,
 }) => {
   // Connect the useMutation hooks with queries
-  const [addAnimal, { data }] = useMutation(ADD_ANIMAL)
+  const [addAnimal] = useMutation(ADD_ANIMAL)
   const [updateAnimal] = useMutation(UPDATE_ANIMAL)
   // Set up initial state so we can use it to clear state later
   const initialState = {
@@ -96,52 +105,71 @@ const AddAnimal = ({
     setFormData({ [name]: type === "checkbox" ? checked : value })
   }
 
+  const typeOptions = [
+    { value: "mammal", label: "Mammal" },
+    { value: "reptile", label: "Reptile" },
+    { value: "fish", label: "Fish" },
+    { value: "amphibious", label: "Amphibious" },
+  ]
+
+  const dietOptions = [
+    { value: "herbivore", label: "Herbivore" },
+    { value: "carnivore", label: "Carnivore" },
+  ]
+
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input
-          type="text"
+      <WindowHeader>
+        <span role="img" aria-label="Kiwi">
+          🥝
+        </span>
+        Kiwi.app
+      </WindowHeader>
+      <Toolbar noPadding>
+        <Button variant="menu">Upload</Button>
+      </Toolbar>
+
+      <Fieldset label="Name">
+        <TextField
           name="name"
+          placeholder="Type here..."
           value={formData.name}
           onChange={event => handleChange(event)}
+          fullWidth
         />
-      </label>
-      <label>
-        Type:
-        <select
+      </Fieldset>
+      <Fieldset label="Type">
+        <Select
           name="type"
           value={formData.type}
           onChange={event => handleChange(event)}
-        >
-          <option defaultValue></option>
-          <option value="mammal">Mammal</option>
-          <option value="reptile">Reptile</option>
-          <option value="fish">Fish</option>
-          <option value="amphibious">Amphibious</option>
-        </select>
-      </label>
-      <label>
-        Diet:
-        <select
-          name="diet"
-          value={formData.diet}
-          onChange={event => handleChange(event)}
-        >
-          <option defaultValue></option>
-          <option value="herbivore">Herbivore</option>
-          <option value="carnivore">Carnivore</option>
-        </select>
-      </label>
-      <label>
-        Is Extinct:
-        <input
+          defaultValue=""
+          options={typeOptions}
+          width="100%"
+        />
+      </Fieldset>
+      <Fieldset label="Diet">
+        <label>
+          Name
+          <Select
+            name="diet"
+            value={formData.diet}
+            onChange={event => handleChange(event)}
+            defaultValue=""
+            options={dietOptions}
+            width="100%"
+          />
+        </label>
+      </Fieldset>
+
+      <Fieldset label="Is the animal extinct?">
+        <Checkbox
+          label="Extinct"
           name="isExtinct"
-          type="checkbox"
           checked={formData.isExtinct}
           onChange={event => handleChange(event)}
         />
-      </label>
+      </Fieldset>
 
       <button type="submit">{isEditing ? "Save" : "Add animal"}</button>
       <button
