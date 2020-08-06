@@ -61,7 +61,7 @@ const UPDATE_ANIMAL = gql`
 `
 
 const AddAnimal = ({
-  id = uuidv4(),
+  id = 10,
   type,
   name,
   diet,
@@ -89,7 +89,7 @@ const AddAnimal = ({
 
   const handleSubmit = event => {
     event.preventDefault()
-
+    console.log("formdata **", formData.id, typeof formData.id)
     // Call the mutation
     isEditing
       ? updateAnimal({ variables: { ...formData } })
@@ -178,7 +178,7 @@ const AddAnimal = ({
 }
 
 AddAnimal.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   name: PropTypes.string,
   type: PropTypes.string,
   diet: PropTypes.string,

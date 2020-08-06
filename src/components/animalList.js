@@ -20,7 +20,15 @@ const AnimalList = () => {
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :(</p>
 
-  return data.allAnimals.map(animal => <Animal key={animal.id} {...animal} />)
+  return data.allAnimals.map(animal => {
+    const animalProps = {
+      ...animal,
+      id: parseInt(animal.id),
+    }
+    console.log("loops **", animalProps.id, typeof animalProps.id)
+
+    return <Animal key={animalProps.id} {...animalProps} />
+  })
 }
 
 export default AnimalList

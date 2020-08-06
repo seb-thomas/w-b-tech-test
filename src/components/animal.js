@@ -14,6 +14,7 @@ const Animal = ({ id, name, type, diet, isExtinct }) => {
   const [removeAnimal, { data }] = useMutation(DELETE_ANIMAL)
   const [isEditing, setIsEditing] = useState(false)
 
+  console.log("animal **", id, typeof id)
   const handleOnDeleteClick = () => {
     removeAnimal({ variables: { id } })
   }
@@ -53,7 +54,7 @@ const Animal = ({ id, name, type, diet, isExtinct }) => {
 }
 
 Animal.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   diet: PropTypes.string.isRequired,
