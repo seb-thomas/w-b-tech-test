@@ -28,7 +28,9 @@ const Animal = ({ id, name, type, diet, isExtinct }) => {
       <dd>{type}</dd>
       <dd>{diet}</dd>
       <dd>Is extinct: {isExtinct ? "Yes" : "No"}</dd>
-      <button onClick={handleOnDeleteClick}>Delete</button>
+      <button onClick={handleOnDeleteClick} data-cy="delete-button">
+        Delete
+      </button>
       <button onClick={() => handleOnEditClick(true)}>Edit</button>
     </dl>
   )
@@ -46,7 +48,7 @@ const Animal = ({ id, name, type, diet, isExtinct }) => {
   )
 
   return (
-    <Window>
+    <Window data-cy="animal-card">
       <WindowContent>{isEditing ? editingCard : staticCard}</WindowContent>
     </Window>
   )
