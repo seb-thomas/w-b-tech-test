@@ -121,7 +121,7 @@ const AddAnimal = ({
   return (
     <form onSubmit={handleSubmit}>
       <WindowHeader>
-        <span role="img" aria-label="Kiwi">
+        <span role="img" aria-label="Leomon">
           🥝
         </span>
         Kiwi.app
