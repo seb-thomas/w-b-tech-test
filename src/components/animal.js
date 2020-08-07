@@ -30,7 +30,9 @@ const Animal = ({ id, name, type, diet, isExtinct }) => {
       <button onClick={handleOnDeleteClick} data-cy="delete-button">
         Delete
       </button>
-      <button onClick={() => handleOnEditClick(true)}>Edit</button>
+      <button onClick={() => handleOnEditClick(true)} data-cy="edit-button">
+        Edit
+      </button>
     </dl>
   )
 
