@@ -1,11 +1,13 @@
 import React, { useReducer } from "react"
 import { gql, useMutation } from "@apollo/client"
 import { v4 as uuidv4 } from "uuid"
+
 import PropTypes from "prop-types"
 import Select from "./form/select"
 import TextInput from "./form/text"
 import Checkbox from "./form/checkbox"
-import CardStyled from "./card.styled"
+
+import { $Card } from "../styles"
 
 const ADD_ANIMAL = gql`
   mutation createAnimal(
@@ -114,7 +116,7 @@ const AddAnimal = ({
   ]
 
   return (
-    <CardStyled as="form" onSubmit={handleSubmit} data-cy="add-animal-form">
+    <$Card as="form" onSubmit={handleSubmit} data-cy="add-animal-form">
       <TextInput
         name="name"
         placeholder="Type here..."
@@ -144,7 +146,7 @@ const AddAnimal = ({
         onChange={event => handleChange(event)}
       />
       <button type="submit">{isEditing ? "Save" : "Add animal"}</button>
-    </CardStyled>
+    </$Card>
   )
 }
 
