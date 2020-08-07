@@ -11,6 +11,6 @@ describe("Delete badger card test", () => {
       .click()
   })
   it("Checks the badger card has been removed", () => {
-    cy.get(card).should("not.contain", "badger")
+    cy.get(card).should("not.contain", "Badger")
   })
 })

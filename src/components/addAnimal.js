@@ -119,7 +119,7 @@ const AddAnimal = ({
   ]
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} data-cy="add-animal-form">
       <WindowHeader>
         <span role="img" aria-label="Kiwi">
           🥝
