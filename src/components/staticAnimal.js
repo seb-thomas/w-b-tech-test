@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { $Card } from "../styles"
+import { $Card, $KeyValue } from "../styles"
 
 const StaticAnimal = ({
   name,
@@ -10,12 +10,35 @@ const StaticAnimal = ({
   removeAnimal,
   setIsEditing,
 }) => {
+  const keyValuePairs = [
+    {
+      key: "Type:",
+      value: type,
+    },
+    {
+      key: "Diet:",
+      value: diet,
+    },
+    {
+      key: "Is extinct:",
+      value: isExtinct ? "Yes" : "No",
+    },
+  ]
+
+  const keyValue = (key, value) => {
+    return (
+      <$KeyValue key={key}>
+        <span className="key">{key}</span>
+        <span className="value">{value}</span>
+      </$KeyValue>
+    )
+  }
+
   return (
-    <$Card as="dl">
-      <h4>{name}</h4>
-      <div>{type}</div>
-      <div>{diet}</div>
-      <div>Is extinct: {isExtinct ? "Yes" : "No"}</div>
+    <$Card>
+      <h4 className="title">{name}</h4>
+      {keyValuePairs.map(({ key, value }) => keyValue(key, value))}
+
       <button onClick={removeAnimal} data-cy="delete-button">
         Delete
       </button>
