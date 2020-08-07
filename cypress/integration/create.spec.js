@@ -1,4 +1,7 @@
 describe("Create an animal card", () => {
+  const card = "[data-cy=animal-card]"
+  const form = "[data-cy=add-animal-form]"
+
   const testData = {
     name: "Tasmanian tiger",
     type: "mammal",
@@ -10,18 +13,16 @@ describe("Create an animal card", () => {
     cy.visit("/")
   })
 
-  it("Deletes the badger card", () => {
-    cy.get("[data-cy=add-animal-form]").within(() => {
+  it(`Adds a new ${testData.name} card`, () => {
+    cy.get(form).within(() => {
       cy.get('input[name="name"]').type(testData.name)
-      cy.get('input[name="type"]').debug()
-      // select(testData.type)
-      // cy.get("textarea").type("is a developer")
+      cy.get('select[name="type"]').select(testData.type)
+      cy.get('select[name="diet"]').select(testData.diet)
+      cy.get('input[name="isExtinct"]').check()
     })
-    // .contains(card, "Badger")
-    // .find("[data-cy=delete-button]")
-    // .click()
+    cy.get(form).submit()
   })
-  // it("Checks the badger card has been removed", () => {
-  //   cy.get(card).should("contain", testData.name)
-  // })
+  it(`Checks the new  ${testData.name} card has been added`, () => {
+    cy.get(card).should("contain", testData.name)
+  })
 })
