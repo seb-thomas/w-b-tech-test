@@ -12,10 +12,10 @@ const StaticAnimal = ({
 }) => {
   return (
     <$Card as="dl">
-      <dt>{name}</dt>
-      <dd>{type}</dd>
-      <dd>{diet}</dd>
-      <dd>Is extinct: {isExtinct ? "Yes" : "No"}</dd>
+      <h4>{name}</h4>
+      <div>{type}</div>
+      <div>{diet}</div>
+      <div>Is extinct: {isExtinct ? "Yes" : "No"}</div>
       <button onClick={removeAnimal} data-cy="delete-button">
         Delete
       </button>

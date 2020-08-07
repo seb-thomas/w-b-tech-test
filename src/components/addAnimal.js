@@ -146,6 +146,9 @@ const AddAnimal = ({
         onChange={event => handleChange(event)}
       />
       <button type="submit">{isEditing ? "Save" : "Add animal"}</button>
+      {isEditing ? (
+        <button onClick={() => setIsEditing(false)}>Cancel</button>
+      ) : null}
     </$Card>
   )
 }
