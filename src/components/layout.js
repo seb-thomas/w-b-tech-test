@@ -1,5 +1,6 @@
 import React from "react"
-import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
+import { createGlobalStyle, ThemeProvider } from "styled-components"
+import { $Layout } from "../styles/"
 
 const theme = {}
 
@@ -9,18 +10,12 @@ const GlobalStyles = createGlobalStyle`
   }
 `
 
-const LayoutStyled = styled.div`
-  margin: 3rem auto;
-  max-width: 650px;
-  padding: 0 1rem;
-`
-
 const Layout = ({ children }) => {
   return (
-    <LayoutStyled>
+    <$Layout>
       <GlobalStyles />
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </LayoutStyled>
+    </$Layout>
   )
 }
 

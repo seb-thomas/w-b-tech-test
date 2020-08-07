@@ -4,8 +4,8 @@ const Card = styled.div`
   background-color: white;
   border: 3px solid;
   margin: 0.5rem;
-  max-width: 250px;
   padding: 1rem;
+  width: 250px;
 
   .title {
     margin-top: 0;
