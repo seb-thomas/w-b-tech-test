@@ -5,6 +5,7 @@ import PropTypes from "prop-types"
 import Select from "./form/select"
 import TextInput from "./form/text"
 import Checkbox from "./form/checkbox"
+import CardStyled from "./card.styled"
 
 const ADD_ANIMAL = gql`
   mutation createAnimal(
@@ -113,7 +114,7 @@ const AddAnimal = ({
   ]
 
   return (
-    <form onSubmit={handleSubmit} data-cy="add-animal-form">
+    <CardStyled as="form" onSubmit={handleSubmit} data-cy="add-animal-form">
       <TextInput
         name="name"
         placeholder="Type here..."
@@ -143,7 +144,7 @@ const AddAnimal = ({
         onChange={event => handleChange(event)}
       />
       <button type="submit">{isEditing ? "Save" : "Add animal"}</button>
-    </form>
+    </CardStyled>
   )
 }
 

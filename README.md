@@ -17,3 +17,4 @@ Things I would have liked to do, if I had more time.
 - Linting
   polling
   only run tests once - mock?
+  use gql for state

@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import CardStyled from "./card.styled"
 
 const StaticAnimal = ({
   name,
@@ -10,7 +11,7 @@ const StaticAnimal = ({
   setIsEditing,
 }) => {
   return (
-    <dl>
+    <CardStyled as="dl">
       <dt>{name}</dt>
       <dd>{type}</dd>
       <dd>{diet}</dd>
@@ -21,7 +22,7 @@ const StaticAnimal = ({
       <button onClick={() => setIsEditing(true)} data-cy="edit-button">
         Edit
       </button>
-    </dl>
+    </CardStyled>
   )
 }
 
