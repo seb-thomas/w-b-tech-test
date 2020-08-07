@@ -1,4 +1,4 @@
-describe("Count", () => {
+describe("Read", () => {
   it("Visits Animal Top Trumps", () => {
     cy.visit("/")
   })
