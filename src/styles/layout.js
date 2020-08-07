@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
 const $Layout = styled.div`
-  margin: 3rem auto;
-  max-width: 650px;
+  margin: 0 auto 3rem auto;
+  max-width: 830px;
   padding: 0 1rem;
 `
 
