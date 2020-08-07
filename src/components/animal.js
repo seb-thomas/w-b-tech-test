@@ -45,11 +45,7 @@ const Animal = ({ id, name, type, diet, isExtinct }) => {
     />
   )
 
-  return (
-    <Window>
-      <WindowContent>{isEditing ? editingCard : staticCard}</WindowContent>
-    </Window>
-  )
+  return <div>{isEditing ? editingCard : staticCard}</div>
 }
 
 Animal.propTypes = {
