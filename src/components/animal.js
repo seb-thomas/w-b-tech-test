@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import PropTypes from "prop-types"
 import { gql, useMutation } from "@apollo/client"
 import AddAnimal from "./addAnimal"
-import { Window, WindowContent } from "react95"
 
 const DELETE_ANIMAL = gql`
   mutation removeAnimal($id: ID!) {
@@ -11,7 +10,7 @@ const DELETE_ANIMAL = gql`
 `
 
 const Animal = ({ id, name, type, diet, isExtinct }) => {
-  const [removeAnimal, { data }] = useMutation(DELETE_ANIMAL)
+  const [removeAnimal] = useMutation(DELETE_ANIMAL)
   const [isEditing, setIsEditing] = useState(false)
 
   const handleOnDeleteClick = () => {
