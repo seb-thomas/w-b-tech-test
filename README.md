@@ -5,6 +5,7 @@
 Get Gatsby and JSON GraphQL server running with one npm script command:
 
 ```shell
+npm install
 npm start
 ```
 
@@ -13,6 +14,7 @@ npm start
 Tests are done with Cypress. I thought it would be a good end to end way of making sure the app is always working, and also I haven't used it much so it's useful for me to learn more.
 
 ```shell
+npm install
 npm run test:e2e
 ```
 
