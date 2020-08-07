@@ -18,5 +18,11 @@ module.exports = {
         uri: "http://localhost:3022/graphql",
       },
     },
+    {
+      resolve: "gatsby-plugin-typography",
+      options: {
+        pathToConfigModule: "src/utils/typography",
+      },
+    },
   ],
 }
