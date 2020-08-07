@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { gql, useMutation } from "@apollo/client"
 import AddAnimal from "./addAnimal"
 import StaticAnimal from "./staticAnimal"
+import { $Card } from "../styles"
 
 const DELETE_ANIMAL = gql`
   mutation removeAnimal($id: ID!) {
@@ -35,7 +36,9 @@ const Animal = props => {
     />
   )
 
-  return <div data-cy="animal-card">{isEditing ? editingCard : staticCard}</div>
+  return (
+    <$Card data-cy="animal-card">{isEditing ? editingCard : staticCard}</$Card>
+  )
 }
 
 Animal.propTypes = {

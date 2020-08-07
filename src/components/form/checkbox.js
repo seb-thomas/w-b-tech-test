@@ -1,17 +1,19 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { $FormField } from "../../styles"
 
 const Checkbox = ({ label, name, checked, onChange }) => {
   return (
-    <label>
-      {label}
+    <$FormField>
+      <label htmlFor={name}>{label}</label>
       <input
         type="checkbox"
+        id={name}
         name={name}
         checked={checked}
         onChange={onChange}
       />
-    </label>
+    </$FormField>
   )
 }
 

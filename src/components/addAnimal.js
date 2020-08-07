@@ -6,8 +6,7 @@ import PropTypes from "prop-types"
 import Select from "./form/select"
 import TextInput from "./form/text"
 import Checkbox from "./form/checkbox"
-
-import { $Card } from "../styles"
+import { $ButtonGroup } from "../styles"
 
 const ADD_ANIMAL = gql`
   mutation createAnimal(
@@ -116,10 +115,12 @@ const AddAnimal = ({
   ]
 
   return (
-    <$Card as="form" onSubmit={handleSubmit} data-cy="add-animal-form">
+    <form onSubmit={handleSubmit} data-cy="add-animal-form">
+      {!isEditing ? <h4 className="title">Add a new animal</h4> : null}
       <TextInput
+        label="Name"
         name="name"
-        placeholder="Type here..."
+        placeholder=""
         value={formData.name}
         onChange={event => handleChange(event)}
       />
@@ -145,11 +146,13 @@ const AddAnimal = ({
         checked={formData.isExtinct}
         onChange={event => handleChange(event)}
       />
-      <button type="submit">{isEditing ? "Save" : "Add animal"}</button>
-      {isEditing ? (
-        <button onClick={() => setIsEditing(false)}>Cancel</button>
-      ) : null}
-    </$Card>
+      <$ButtonGroup>
+        <button type="submit">{isEditing ? "Save" : "Add animal"}</button>
+        {isEditing ? (
+          <button onClick={() => setIsEditing(false)}>Cancel</button>
+        ) : null}
+      </$ButtonGroup>
+    </form>
   )
 }
 

@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import AddAnimal from "../components/addAnimal"
 import AnimalList from "../components/animalList"
-import { $CardList } from "../styles"
+import { $CardList, $Card } from "../styles"
 
 export default function Home({ data }) {
   return (
@@ -12,7 +12,9 @@ export default function Home({ data }) {
 
       <$CardList>
         <AnimalList />
-        <AddAnimal />
+        <$Card>
+          <AddAnimal />
+        </$Card>
       </$CardList>
     </Layout>
   )

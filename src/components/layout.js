@@ -8,6 +8,10 @@ const GlobalStyles = createGlobalStyle`
   body {
     background: whitesmoke;
   }
+
+  form {
+    margin: 0;
+  }
 `
 
 const Layout = ({ children }) => {

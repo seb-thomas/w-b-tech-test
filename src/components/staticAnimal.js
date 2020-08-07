@@ -1,6 +1,6 @@
-import React from "react"
+import React, { Fragment } from "react"
 import PropTypes from "prop-types"
-import { $Card, $KeyValue, $ButtonGroup } from "../styles"
+import { $KeyValue, $ButtonGroup } from "../styles"
 
 const StaticAnimal = ({
   name,
@@ -35,7 +35,7 @@ const StaticAnimal = ({
   }
 
   return (
-    <$Card>
+    <Fragment>
       <h4 className="title">{name}</h4>
       {keyValuePairs.map(({ key, value }) => keyValue(key, value))}
 
@@ -47,7 +47,7 @@ const StaticAnimal = ({
           Edit
         </button>
       </$ButtonGroup>
-    </$Card>
+    </Fragment>
   )
 }
 

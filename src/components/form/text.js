@@ -1,18 +1,20 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { $FormField } from "../../styles"
 
 const TextInput = ({ label, name, value, onChange, placeholder }) => {
   return (
-    <label>
-      {label}
+    <$FormField>
+      <label htmlFor={name}>{label}</label>
       <input
+        id={name}
         type="text"
         name={name}
         value={value}
         placeholder={placeholder}
         onChange={onChange}
       />
-    </label>
+    </$FormField>
   )
 }
 

@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { $FormField } from "../../styles"
 
 const Select = ({ label, name, value, onChange, defaultValue, options }) => {
   const getOptions = () => {
@@ -11,13 +12,13 @@ const Select = ({ label, name, value, onChange, defaultValue, options }) => {
   }
 
   return (
-    <label>
-      {label}
-      <select name={name} value={value} onChange={onChange}>
+    <$FormField>
+      <label htmlFor={name}>{label}</label>
+      <select id={name} name={name} value={value} onChange={onChange}>
         <option defaultValue>{defaultValue}</option>
         {getOptions()}
       </select>
-    </label>
+    </$FormField>
   )
 }
 
