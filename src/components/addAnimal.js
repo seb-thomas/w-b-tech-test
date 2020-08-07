@@ -1,60 +1,15 @@
 import React, { useReducer } from "react"
-import { gql, useMutation } from "@apollo/client"
+import { useMutation } from "@apollo/client"
 import { v4 as uuidv4 } from "uuid"
-
 import PropTypes from "prop-types"
+
 import Select from "./form/select"
 import TextInput from "./form/text"
 import Checkbox from "./form/checkbox"
+
+import { ADD_ANIMAL, UPDATE_ANIMAL } from "../utils/queries"
+
 import { $ButtonGroup } from "../styles"
-
-const ADD_ANIMAL = gql`
-  mutation createAnimal(
-    $id: ID!
-    $name: String!
-    $type: String!
-    $diet: String!
-    $isExtinct: Boolean!
-  ) {
-    createAnimal(
-      id: $id
-      name: $name
-      type: $type
-      diet: $diet
-      isExtinct: $isExtinct
-    ) {
-      id
-      type
-      name
-      diet
-      isExtinct
-    }
-  }
-`
-
-const UPDATE_ANIMAL = gql`
-  mutation updateAnimal(
-    $id: ID!
-    $name: String!
-    $type: String!
-    $diet: String!
-    $isExtinct: Boolean!
-  ) {
-    updateAnimal(
-      id: $id
-      name: $name
-      type: $type
-      diet: $diet
-      isExtinct: $isExtinct
-    ) {
-      id
-      type
-      name
-      diet
-      isExtinct
-    }
-  }
-`
 
 const AddAnimal = ({
   id = uuidv4(),
@@ -68,6 +23,7 @@ const AddAnimal = ({
   // Connect the useMutation hooks with queries
   const [addAnimal] = useMutation(ADD_ANIMAL)
   const [updateAnimal] = useMutation(UPDATE_ANIMAL)
+
   // Set up initial state so we can use it to clear state later
   const initialState = {
     id,
@@ -83,14 +39,23 @@ const AddAnimal = ({
     { ...initialState }
   )
 
+  const handleUpdate = () => {
+    updateAnimal({
+      variables: { ...formData },
+      onCompleted: setIsEditing(false),
+    })
+  }
+
+  const handleAdd = () => {
+    addAnimal({ variables: { ...formData } })
+  }
+
   const handleSubmit = event => {
     event.preventDefault()
 
-    // Call the mutation
-    isEditing
-      ? updateAnimal({ variables: { ...formData } })
-      : addAnimal({ variables: { ...formData } })
-    setIsEditing(false)
+    // Call the mutations
+    isEditing ? handleUpdate() : handleAdd()
+
     // Clear the form data
     return setFormData({ ...initialState })
   }
@@ -148,6 +113,7 @@ const AddAnimal = ({
       />
       <$ButtonGroup>
         <button type="submit">{isEditing ? "Save" : "Add animal"}</button>
+
         {isEditing ? (
           <button onClick={() => setIsEditing(false)}>Cancel</button>
         ) : null}

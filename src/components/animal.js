@@ -1,15 +1,10 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
-import { gql, useMutation } from "@apollo/client"
+import { useMutation } from "@apollo/client"
 import AddAnimal from "./addAnimal"
 import StaticAnimal from "./staticAnimal"
 import { $Card } from "../styles"
-
-const DELETE_ANIMAL = gql`
-  mutation removeAnimal($id: ID!) {
-    removeAnimal(id: $id)
-  }
-`
+import { DELETE_ANIMAL } from "../utils/queries"
 
 const Animal = props => {
   const { id } = props

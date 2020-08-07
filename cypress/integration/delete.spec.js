@@ -1,4 +1,4 @@
-describe("Delete badger card test", () => {
+describe("Delete badger card", () => {
   const card = "[data-cy=animal-card]"
 
   it("Visits Animal Top Trumps", () => {
