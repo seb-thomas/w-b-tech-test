@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { $Card, $KeyValue } from "../styles"
+import { $Card, $KeyValue, $ButtonGroup } from "../styles"
 
 const StaticAnimal = ({
   name,
@@ -39,12 +39,14 @@ const StaticAnimal = ({
       <h4 className="title">{name}</h4>
       {keyValuePairs.map(({ key, value }) => keyValue(key, value))}
 
-      <button onClick={removeAnimal} data-cy="delete-button">
-        Delete
-      </button>
-      <button onClick={() => setIsEditing(true)} data-cy="edit-button">
-        Edit
-      </button>
+      <$ButtonGroup>
+        <button onClick={removeAnimal} data-cy="delete-button">
+          Delete
+        </button>
+        <button onClick={() => setIsEditing(true)} data-cy="edit-button">
+          Edit
+        </button>
+      </$ButtonGroup>
     </$Card>
   )
 }
