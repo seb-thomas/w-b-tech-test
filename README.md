@@ -18,6 +18,14 @@ npm install
 npm run test:e2e
 ```
 
+**Building**
+
+Build has not been tested or implemented further than what comes with Gatsby by default. Given that this project runs a GraphQL server and work required around CORs and other issues would detract from coding time for other features, I have focussed on running the project in development. I have left the build command in, and it may be possible to get the app running if you serve the static project on localhost. You will need to run the db separately, for which you can use this command:
+
+```shell
+npm run db
+```
+
 **Notes**
 
 - I would like to have improved the AddAnimal/Update code by using a HOC, they're basically the same thing but smooshing them into one component was messy, and I've had to add a few conditions depending on whether it's in edit or add state.
