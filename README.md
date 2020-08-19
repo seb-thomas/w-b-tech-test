@@ -30,7 +30,7 @@ Extra credit
 
 - Use graphql for extra credit
 
-## Notes
+## Debrief notes
 
 - Doing this test was a good experience - as the brief mentioned GraphQL I really wanted to use that along with Gatsby (as that is what W&B plan to use) and use it as an opportunity to learn something new.
 - "Build a CRUD app" is a deceptively simple brief and there were a lot of decisions to make to not get sidetracked, prioritise and stick to the brief, while making a stable app in a relatively short time.
