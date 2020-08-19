@@ -64,6 +64,25 @@ npm install
 npm start
 ```
 
+The front end should now be visible at http://localhost:8000/
+
+You can also check out the _JSON GraphQL Server_ GraphiQL in-browser tool, where you can play with some GraphQL queries, directly interacting with the GraphQL for this project.
+
+Go to http://localhost:3022/ and type in:
+
+```shell
+query MyQuery {
+  allAnimals {
+    name,
+    diet
+    type
+    id
+  }
+}
+```
+
+And hit `ctrl+enter`
+
 **To test the project**
 
 Tests are done with Cypress. I thought it would be a good end to end way of making sure the app is always working, and also I haven't used it much so it's useful for me to learn more.

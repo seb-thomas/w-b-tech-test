@@ -23,6 +23,7 @@
     "gatsby-plugin-apollo": "^3.0.1",
     "gatsby-plugin-styled-components": "^3.3.10",
     "gatsby-plugin-typography": "^2.5.10",
+    "json-graphql-server": "^2.1.3",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
