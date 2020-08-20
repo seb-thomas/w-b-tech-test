@@ -64,7 +64,7 @@ const AddAnimal = ({
     const { name, value, type, checked } = event.target
 
     // Set the form fields state
-    setFormData({ [name]: type === "checkbox" ? checked : value })
+    setFormData({ [name]: type === "checkbox" ? checked : value }) // If it's a checkbox use checked, otherwise value
   }
 
   const typeOptions = [

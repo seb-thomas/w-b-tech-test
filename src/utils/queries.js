@@ -1,4 +1,6 @@
 import { gql } from "@apollo/client"
+
+// These are the GraphQL queries used throughout the app
 export const ADD_ANIMAL = gql`
   mutation createAnimal(
     $id: ID!
@@ -22,6 +24,7 @@ export const ADD_ANIMAL = gql`
     }
   }
 `
+
 export const UPDATE_ANIMAL = gql`
   mutation updateAnimal(
     $id: ID!
@@ -45,6 +48,7 @@ export const UPDATE_ANIMAL = gql`
     }
   }
 `
+
 export const ALL_ANIMALS = gql`
   query GetAnimals {
     allAnimals {
@@ -56,6 +60,7 @@ export const ALL_ANIMALS = gql`
     }
   }
 `
+
 export const DELETE_ANIMAL = gql`
   mutation removeAnimal($id: ID!) {
     removeAnimal(id: $id)
